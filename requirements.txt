@@ -8,4 +8,5 @@ pythreejs
 stpyvista
 trimesh
 scipy
+opencv
 pyvista
