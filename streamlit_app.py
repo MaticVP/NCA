@@ -42,11 +42,12 @@ elif uploaded_file is not None:
 if uploaded_file is not None:
     st.session_state.hmap = img
 
-pyvista.start_xvfb()
+
 
 if uploaded_file is not None or "hmap" in st.session_state.keys():
     mesh, color = gen_map(st.session_state.hmap, (resolution,resolution),pixel_scale,height_scale)
 
+    pyvista.start_xvfb()
 
     # Convert Trimesh to PyVista
     vertices = mesh.vertices
