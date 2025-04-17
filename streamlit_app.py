@@ -8,8 +8,10 @@ from stpyvista import stpyvista
 from gen_heightmaps import gen_hightmap
 
 torch.classes.__path__ = []
+pyvista.start_xvfb()
 
 from gen_mesh import gen_map
+
 
 st.title("Upload Image & Render Heightmap")
 
@@ -46,8 +48,6 @@ if uploaded_file is not None:
 
 if uploaded_file is not None or "hmap" in st.session_state.keys():
     mesh, color = gen_map(st.session_state.hmap, (resolution,resolution),pixel_scale,height_scale)
-
-    pyvista.start_xvfb()
 
     # Convert Trimesh to PyVista
     vertices = mesh.vertices
