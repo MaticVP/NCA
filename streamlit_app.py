@@ -1,3 +1,4 @@
+import pyvista
 import streamlit as st
 import numpy as np
 import pyvista as pv
@@ -40,8 +41,6 @@ elif uploaded_file is not None:
 
 if uploaded_file is not None:
     st.session_state.hmap = img
-
-
 
 pyvista.start_xvfb()
 
