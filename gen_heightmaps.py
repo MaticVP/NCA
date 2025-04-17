@@ -27,7 +27,8 @@ def gen_hightmap(type,numSteps=300,steps=32, res=64):
 
 
 
-        x = to_rgb(x).permute([0, 2, 3, 1]).cpu()
+        #x = to_rgb(x).permute([0, 2, 3, 1]).cpu()
+        x = to_rgb(x).permute([0, 2, 3, 1])
 
         x = x.squeeze(0)
 
