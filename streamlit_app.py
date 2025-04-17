@@ -12,14 +12,14 @@ st.title("Upload Image & Render Heightmap")
 uploaded_file = st.file_uploader("Upload a heightmap image (.png, .jpg)", type=["png", "jpg", "jpeg"])
 
 st.sidebar.header("Mesh Parameters")
-resolution = st.sidebar.slider("Resolution (number of samples)", min_value=10, max_value=1024, value=256, step=1)
-pixel_scale = st.sidebar.number_input("Pixel Scale (e.g., meters per pixel)", min_value=0.01, max_value=10.0, value=1.0, step=0.1)
-height_scale = st.sidebar.number_input("Height Scale", min_value=0.01, max_value=10.0, value=1.0, step=0.1)
+resolution = st.sidebar.slider("Resolution (number of samples)", min_value=128, max_value=1024, value=256, step=1)
+pixel_scale = st.sidebar.number_input("Pixel Scale (e.g., meters per pixel)", min_value=1, max_value=50.0, value=20.0, step=1)
+height_scale = st.sidebar.number_input("Height Scale", min_value=0.01, max_value=5.0, value=1.0, step=0.1)
 
 
 if uploaded_file is not None:
     pyvista.start_xvfb()
-    mesh, color = gen_map(uploaded_file)
+    mesh, color = gen_map(uploaded_file,(resolution,resolution),pixel_scale,height_scale)
 
 
     # Convert Trimesh to PyVista
