@@ -12,7 +12,7 @@ st.title("Upload Image & Render Heightmap")
 uploaded_file = st.file_uploader("Upload a heightmap image (.png, .jpg)", type=["png", "jpg", "jpeg"])
 
 st.sidebar.header("Mesh Parameters")
-resolution = st.sidebar.slider("Resolution (number of samples)", min_value=128, max_value=1024, value=256, step=1)
+resolution = st.sidebar.slider("Resolution (number of samples)", min_value=64, max_value=256, value=128, step=1)
 pixel_scale = st.sidebar.number_input("Pixel Scale (e.g., meters per pixel)", min_value=1, max_value=50, value=20, step=1)
 height_scale = st.sidebar.number_input("Height Scale", min_value=0.01, max_value=5.0, value=1.0, step=0.1)
 
