@@ -1,34 +1,33 @@
-import torch
-import numpy as np
-import matplotlib.pyplot as plt
-from PIL import Image
 import streamlit as st
-from io import BytesIO
+import numpy as np
+import pyvista as pv
+import trimesh
+from stpyvista import stpyvista
 
-def generate_heightmap(seed, scale, resolution):
-    torch.manual_seed(seed)
-    res = int(resolution)
-    heightmap = scale * torch.randn(res, res).numpy()
+from gen_mesh import gen_map
 
-    fig = plt.figure(figsize=(6, 4))
-    ax = fig.add_subplot(111, projection='3d')
-    X, Y = np.meshgrid(np.arange(res), np.arange(res))
-    ax.plot_surface(X, Y, heightmap, cmap='terrain')
+st.title("Upload Image & Render Heightmap")
 
-    buf = BytesIO()
-    plt.tight_layout()
-    plt.savefig(buf, format='png')
-    buf.seek(0)
-    plt.close(fig)
+uploaded_file = st.file_uploader("Upload a heightmap image (.png, .jpg)", type=["png", "jpg", "jpeg"])
 
-    return Image.open(buf)
+if uploaded_file is not None:
+    mesh, color = gen_map(uploaded_file)
 
-# Streamlit UI
-st.title("Heightmap Generator")
 
-seed = st.slider("Random Seed", 0, 1000, 42)
-scale = st.slider("Scale", 0.1, 5.0, 1.0)
-resolution = st.slider("Resolution", 32, 128, 64)
+    # Convert Trimesh to PyVista
+    vertices = mesh.vertices
+    faces = mesh.faces
+    faces_pv = np.hstack([[3] + list(face) for face in faces])  # add face sizes (3 = triangle)
+    faces_pv = np.array(faces_pv)
 
-# Generate and display heightmap
-st.image(generate_heightmap(seed, scale, resolution))
+    pv_mesh = pv.PolyData(vertices, faces_pv)
+    pv_mesh.cell_data["colors"] = color
+
+    # Plot in Streamlit
+    #stpyvista.set_plot_theme("document")  # optional
+    plotter = pv.Plotter(window_size=(600, 600))
+    plotter.add_mesh(pv_mesh, scalars="colors", rgb=True)
+    plotter.set_background("white")
+    plotter.view_isometric()
+    stpyvista(plotter)
+

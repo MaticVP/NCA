@@ -1,5 +1,10 @@
-torch
-numpy
-matplotlib
-Pillow
 streamlit
+torch
+matplotlib
+numpy
+Pillow
+plotly
+pythreejs
+stpyvista
+trimesh
+scipy
