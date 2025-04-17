@@ -1,3 +1,4 @@
+import pyvista
 import streamlit as st
 import numpy as np
 import pyvista as pv
@@ -11,6 +12,7 @@ st.title("Upload Image & Render Heightmap")
 uploaded_file = st.file_uploader("Upload a heightmap image (.png, .jpg)", type=["png", "jpg", "jpeg"])
 
 if uploaded_file is not None:
+    pyvista.start_xvfb()
     mesh, color = gen_map(uploaded_file)
 
 
