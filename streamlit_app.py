@@ -18,7 +18,7 @@ height_scale = st.sidebar.number_input("Height Scale", min_value=0.01, max_value
 
 
 if uploaded_file is not None:
-    #pyvista.start_xvfb()
+    pyvista.start_xvfb()
     mesh, color = gen_map(uploaded_file,(resolution,resolution),pixel_scale,height_scale)
 
 
