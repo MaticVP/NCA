@@ -7,10 +7,10 @@ def gen_hightmap(type,numSteps=300,steps=32, res=64):
     ca = CA()
 
     if type == "Perlin":
-        ca.load_state_dict(torch.load("./ca_model_pearl_ero.pt", weights_only=True))
+        ca.load_state_dict(torch.load("./ca_model_pearl_ero.pt", weights_only=True, map_location=torch.device('cpu')))
 
     if type == "FBM":
-        ca.load_state_dict(torch.load("./ca_model_fbm_ero.pt", weights_only=True))
+        ca.load_state_dict(torch.load("./ca_model_fbm_ero.pt", weights_only=True, map_location=torch.device('cpu')))
 
     x = None
 
