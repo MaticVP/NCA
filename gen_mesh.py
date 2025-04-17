@@ -4,14 +4,12 @@ from PIL import Image
 from scipy.ndimage import gaussian_filter
 
 def gen_map(img,resolution,pixel_scale, height_scale):
-    image_path = './fbm_noise_erosion.png'  # Path to your image
     resize_shape = resolution  # Resize for performance & smoother mesh
     pixel_size = pixel_scale  # Horizontal spacing between points
     height_scale = height_scale  # Elevation scaling factor
     smoothing_sigma = 2.0  # Gaussian blur strength
 
     # === LOAD IMAGE ===
-    img = Image.open(img).convert('L')  # Grayscale
     img = img.resize(resize_shape, resample=Image.BILINEAR)
     height_map = np.array(img).astype(np.float32)
 
