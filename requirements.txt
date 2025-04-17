@@ -8,3 +8,4 @@ pythreejs
 stpyvista
 trimesh
 scipy
+pyvista
