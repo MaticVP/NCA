@@ -53,7 +53,7 @@ def gen_map(img):
         norm_value = (height_value - height_map.min()) / (height_map.max() - height_map.min())
         if norm_value > 0.0:
             face_colors[i] = [0.459, 0.725, 0.839]
-        if norm_value > 0.3:
+        if norm_value > 0.15:
             face_colors[i] = [0.58, 0.878, 0.588]
         if norm_value > 0.4:
             face_colors[i] = [0.78,0.678, 0.416]
