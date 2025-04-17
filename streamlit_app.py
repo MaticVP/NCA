@@ -1,4 +1,6 @@
 import pyvista
+pyvista.start_xvfb()
+
 import streamlit as st
 import numpy as np
 import pyvista as pv
@@ -8,7 +10,7 @@ from stpyvista import stpyvista
 from gen_heightmaps import gen_hightmap
 
 torch.classes.__path__ = []
-pyvista.start_xvfb()
+
 
 from gen_mesh import gen_map
 
