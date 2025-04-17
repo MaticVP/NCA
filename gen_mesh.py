@@ -51,7 +51,13 @@ def gen_map(img):
     for i, face in enumerate(faces):
         height_value = np.mean(height_map[face // w, face % w])  # Average height for the face
         norm_value = (height_value - height_map.min()) / (height_map.max() - height_map.min())
-        face_colors[i] = [norm_value, 0, 1 - norm_value]  # Blue to Red gradient
+        if norm_value > 0.1:
+            face_colors[i] = [0.58, 0.878, 0.588]
+        if norm_value > 0.5:
+            face_colors[i] = [0.78,0.678, 0.416]
+        if norm_value > 0.8:
+            face_colors[i] = [0.902,0.882, 0.843]
+        #face_colors[i] = [norm_value, 0, 1 - norm_value]  # Blue to Red gradient
 
     # === CREATE AND EXPORT MESH ===
     mesh = trimesh.Trimesh(vertices=vertices, faces=faces)
