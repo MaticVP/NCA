@@ -3,7 +3,7 @@ import torch
 from CellularAutomata import CA, to_rgb, NoiseCA
 
 
-def gen_hightmap(type,numSteps=300,steps=12, res=512):
+def gen_hightmap(type,numSteps=20,steps=12, res=512):
 
     if type == "Perlin" or type == "FBM":
         ca = CA()
@@ -17,7 +17,7 @@ def gen_hightmap(type,numSteps=300,steps=12, res=512):
         ca.load_state_dict(torch.load("./nca_model_fbm_ero.pt", weights_only=True, map_location=torch.device('cpu')))
 
     if type == "Noise Perlin":
-        ca.load_state_dict(torch.load("./ca_model_pearl_ero.pt", weights_only=True, map_location=torch.device('cpu')))
+        ca.load_state_dict(torch.load("./nca_model_perlin_ero.pt", weights_only=True, map_location=torch.device('cpu')))
 
     if type == "Noise FBM":
         ca.load_state_dict(torch.load("./nca_model_fbm_ero.pt", weights_only=True, map_location=torch.device('cpu')))
