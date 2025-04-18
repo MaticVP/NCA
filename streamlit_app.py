@@ -1,6 +1,4 @@
-import pyvista
-pyvista.start_xvfb()
-
+import subprocess
 import streamlit as st
 import numpy as np
 import pyvista as pv
@@ -8,11 +6,14 @@ import torch
 from PIL import Image
 from stpyvista import stpyvista
 from gen_heightmaps import gen_hightmap
+from gen_mesh import gen_map
 
 torch.classes.__path__ = []
 
+is_xvfb_running = subprocess.run(["pgrep", "Xvfb"], capture_output=True)
+if is_xvfb_running.returncode == 1:
+    pv.start_xvfb()
 
-from gen_mesh import gen_map
 
 
 st.title("Upload Image & Render Heightmap")
