@@ -33,6 +33,8 @@ res = st.sidebar.slider("Resolution (number of samples)", min_value=32, max_valu
 
 map_type = st.sidebar.selectbox("Map Type", ["Perlin", "FBM"])
 
+st.sidebar.header("Performance")
+
 img = None
 
 if st.sidebar.button("Generate Heightmap"):
