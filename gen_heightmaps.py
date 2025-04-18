@@ -2,7 +2,7 @@ import torch
 
 from CellularAutomata import CA, to_rgb
 
-def gen_hightmap(type,numSteps=300,steps=32, res=64):
+def gen_hightmap(type,numSteps=30,steps=12, res=256):
 
     ca = CA()
 

@@ -1,4 +1,6 @@
 import subprocess
+import time
+
 import streamlit as st
 import numpy as np
 import pyvista as pv
@@ -34,12 +36,15 @@ map_type = st.sidebar.selectbox("Map Type", ["Perlin", "FBM"])
 img = None
 
 if st.sidebar.button("Generate Heightmap"):
+    start = time.time()
     uploaded_file = gen_hightmap(map_type,numSteps,steps,res)
     img = uploaded_file
     img *= 255
     img = img.astype(np.uint8)
     img = Image.fromarray(img)
     img = img.convert('L')
+    elapsed = time.time() - start
+    st.success(f"Heightmap generated in {elapsed:.2f} seconds.")
 
 elif uploaded_file is not None:
     img = Image.open(uploaded_file).convert('L')
@@ -50,6 +55,7 @@ if uploaded_file is not None:
 
 
 if uploaded_file is not None or "hmap" in st.session_state.keys():
+    start = time.time()
     mesh, color = gen_map(st.session_state.hmap, (resolution,resolution),pixel_scale,height_scale)
 
     # Convert Trimesh to PyVista
@@ -68,4 +74,6 @@ if uploaded_file is not None or "hmap" in st.session_state.keys():
     plotter.set_background("white")
     plotter.view_isometric()
     stpyvista(plotter)
+    elapsed = time.time() - start
+    st.success(f"Mesh generated and rendered in {elapsed:.2f} seconds.")
 
