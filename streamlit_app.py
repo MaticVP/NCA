@@ -46,7 +46,7 @@ if st.sidebar.button("Generate Heightmap"):
     img = Image.fromarray(img)
     img = img.convert('L')
     elapsed = time.time() - start
-    st.success(f"Heightmap generated in {elapsed:.2f} seconds.")
+    st.sidebar.text(f"Heightmap generated in {elapsed:.2f} seconds.")
 
 elif uploaded_file is not None:
     img = Image.open(uploaded_file).convert('L')
@@ -77,5 +77,5 @@ if uploaded_file is not None or "hmap" in st.session_state.keys():
     plotter.view_isometric()
     stpyvista(plotter)
     elapsed = time.time() - start
-    st.success(f"Mesh generated and rendered in {elapsed:.2f} seconds.")
+    st.sidebar.text(f"Mesh generated and rendered in {elapsed:.2f} seconds.")
 
