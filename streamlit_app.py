@@ -33,7 +33,7 @@ res = st.sidebar.slider("Resolution (number of samples)", min_value=32, max_valu
 
 map_type = st.sidebar.selectbox("Map Type", ["Perlin", "FBM"])
 
-st.sidebar.header("Performance")
+
 
 img = None
 
@@ -46,6 +46,7 @@ if st.sidebar.button("Generate Heightmap"):
     img = Image.fromarray(img)
     img = img.convert('L')
     elapsed = time.time() - start
+    st.sidebar.header("Performance")
     st.sidebar.text(f"Heightmap generated in {elapsed:.2f} seconds.")
 
 elif uploaded_file is not None:
