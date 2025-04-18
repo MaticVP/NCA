@@ -8,7 +8,7 @@ def gen_hightmap(type,numSteps=300,steps=12, res=512):
     if type == "Perlin" or type == "FBM":
         ca = CA()
     elif type == "Noise FBM" or type == "Noise Perlin":
-        ca = NoiseCA(noise_level=0.1)
+        ca = NoiseCA()
 
     if type == "Perlin":
         ca.load_state_dict(torch.load("./ca_model_pearl_ero.pt", weights_only=True, map_location=torch.device('cpu')))
