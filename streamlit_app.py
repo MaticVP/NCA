@@ -31,7 +31,7 @@ numSteps = st.sidebar.slider("number of steps", min_value=1, max_value=300, valu
 steps = st.sidebar.number_input("Iterations per step", min_value=1, max_value=96, value=32, step=1)
 res = st.sidebar.slider("Resolution (number of samples)", min_value=32, max_value=256, value=32, step=1)
 
-map_type = st.sidebar.selectbox("Map Type", ["Perlin", "FBM"])
+map_type = st.sidebar.selectbox("Map Type", ["Perlin", "FBM","Noise Perlin","Noise FBM"])
 
 
 
