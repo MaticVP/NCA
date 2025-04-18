@@ -14,7 +14,7 @@ torch.classes.__path__ = []
 # if is_xvfb_running.returncode == 1:
 #     pv.start_xvfb()
 
-
+pv.start_xvfb()
 
 st.title("Upload Image & Render Heightmap")
 
