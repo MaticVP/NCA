@@ -23,11 +23,11 @@ st.title("Upload Image & Render Heightmap")
 uploaded_file = st.file_uploader("Upload a heightmap image (.png, .jpg)", type=["png", "jpg", "jpeg"])
 
 st.sidebar.header("Mesh Parameters")
-resolution = st.sidebar.slider("Resolution (number of samples)", min_value=64, max_value=256, value=128, step=1)
+resolution = st.sidebar.slider("Resolution (number of samples)", min_value=64, max_value=128, value=128, step=1)
 pixel_scale = st.sidebar.number_input("Pixel Scale (e.g., meters per pixel)", min_value=1, max_value=50, value=20, step=1)
 height_scale = st.sidebar.number_input("Height Scale", min_value=0.01, max_value=5.0, value=1.0, step=0.1)
 st.sidebar.header("NCA Parameters")
-numSteps = st.sidebar.slider("number of steps", min_value=1, max_value=300, value=300, step=1)
+numSteps = st.sidebar.slider("number of steps", min_value=1, max_value=300, value=30, step=1)
 steps = st.sidebar.number_input("Iterations per step", min_value=1, max_value=96, value=32, step=1)
 res = st.sidebar.slider("Resolution (number of samples)", min_value=32, max_value=256, value=32, step=1)
 
