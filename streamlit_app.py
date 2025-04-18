@@ -10,9 +10,9 @@ from gen_mesh import gen_map
 
 torch.classes.__path__ = []
 
-is_xvfb_running = subprocess.run(["pgrep", "Xvfb"], capture_output=True)
-if is_xvfb_running.returncode == 1:
-    pv.start_xvfb()
+# is_xvfb_running = subprocess.run(["pgrep", "Xvfb"], capture_output=True)
+# if is_xvfb_running.returncode == 1:
+#     pv.start_xvfb()
 
 
 
