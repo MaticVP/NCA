@@ -45,12 +45,28 @@ class NoiseCA(torch.nn.Module):
     self.w2.weight.data.zero_()
     self.register_buffer("noise_level", torch.tensor([noise_level]))
 
-  def forward(self, x, update_rate=0.5):
-    y = perception(x)
-    y = self.w2(torch.relu(self.w1(y)))
-    b, c, h, w = y.shape
-    udpate_mask = (torch.rand(b, 1, h, w)+update_rate).floor()
-    return x+y*udpate_mask
+  def adaptation(self, x):
+    x = perception(x)
+    return self.w2(torch.relu(self.w1(x)))
+  def forward(self, x, update_rate=0.5, rk4Step = False):
+
+    b, c, h, w = x.shape
+    udpate_mask = (torch.rand(b, 1, h, w) + update_rate).floor()
+
+    if rk4Step:
+
+      k1 = self.adaptation(x)
+      k2 = self.adaptation(x + k1 * 0.5 * udpate_mask)
+      k3 = self.adaptation(x + k2 * 0.5 * udpate_mask)
+      k4 = self.adaptation(x + k3 * 0.5 * udpate_mask)
+
+      return x + (k1 + 2 * k2 + 2 * k3 + k4) * udpate_mask / 6.0
+    else:
+      y = perception(x)
+      y = self.w2(torch.relu(self.w1(y)))
+      b, c, h, w = y.shape
+      udpate_mask = (torch.rand(b, 1, h, w)+update_rate).floor()
+      return x+y*udpate_mask
 
   def seed(self, n, sz=128):
     return (torch.rand(n, self.chn, sz, sz) - 0.5) * self.noise_level

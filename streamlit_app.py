@@ -16,14 +16,14 @@ torch.classes.__path__ = []
 # if is_xvfb_running.returncode == 1:
 #     pv.start_xvfb()
 
-pv.start_xvfb()
+#pv.start_xvfb()
 
 st.title("Upload Image & Render Heightmap")
 
 uploaded_file = st.file_uploader("Upload a heightmap image (.png, .jpg)", type=["png", "jpg", "jpeg"])
 
 st.sidebar.header("Mesh Parameters")
-resolution = st.sidebar.slider("Resolution (number of samples)", min_value=64, max_value=128, value=128, step=1)
+resolution = st.sidebar.slider("Resolution (number of samples)", min_value=64, max_value=256, value=128, step=1)
 pixel_scale = st.sidebar.number_input("Pixel Scale (e.g., meters per pixel)", min_value=1, max_value=50, value=20, step=1)
 height_scale = st.sidebar.number_input("Height Scale", min_value=0.01, max_value=5.0, value=1.0, step=0.1)
 st.sidebar.header("NCA Parameters")
