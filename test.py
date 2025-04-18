@@ -7,3 +7,8 @@ uploaded_file = gen_hightmap("Perlin")
 end = time.time()
 print(end - start)
 
+plt.imshow(uploaded_file)
+#plt.imsave("./maps/NCA_FBM")
+#plt.imsave(f"./maps/NCA_perlin_noise_erosion.png", uploaded_file, cmap='gray')
+plt.show()
+
