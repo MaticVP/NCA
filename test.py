@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 import time
 from DP.NCA.gen_heightmaps import gen_hightmap
 start = time.time()
-uploaded_file = gen_hightmap("Noise Perlin")
+uploaded_file = gen_hightmap("Full Perlin")
 end = time.time()
 print(end - start)
 
