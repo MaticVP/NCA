@@ -71,16 +71,16 @@ if st.sidebar.button("Generate Heightmap"):
                 right_diff = abs(img[y,x-1] - center)
 
                 if down_diff > fixup_thresh:
-                    img[y-1,x] = 0
+                    img[y-1,x] = center
 
                 if up_diff > fixup_thresh:
-                    img[y+1,x] = 0
+                    img[y+1,x] = center
 
                 if left_diff > fixup_thresh:
-                    img[y,x+1] = 0
+                    img[y,x+1] = center
 
                 if right_diff > fixup_thresh:
-                    img[y,x-1] = 0
+                    img[y,x-1] = center
 
     img = img.astype(np.uint8)
     img = Image.fromarray(img)
