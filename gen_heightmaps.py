@@ -1,9 +1,10 @@
+import numpy as np
 import torch
 
 from CellularAutomata import CA, to_rgb, NoiseCA, FullCA
 
 
-def gen_hightmap(type,numSteps=10,steps=12, res=512):
+def gen_hightmap(type,numSteps=10,steps=12, res=128):
 
     if type == "Perlin" or type == "FBM":
         ca = CA()
@@ -45,5 +46,7 @@ def gen_hightmap(type,numSteps=10,steps=12, res=512):
         x = x.squeeze(0)
 
         x = x.detach().numpy()
+
+        x = np.clip(x, 0, 1)
 
         return x
