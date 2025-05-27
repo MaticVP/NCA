@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 import time
 from DP.NCA.gen_heightmaps import gen_hightmap
 
-grid_size = 3
+grid_size = 1
 
 map = [None for i in range(grid_size*grid_size)]
 
@@ -17,7 +17,7 @@ for i in range(grid_size):
             index = (i-1) * grid_size + (j-1)
             seed[2] = map[index]
         now = time.time()
-        uploaded_file = gen_hightmap("Chunk Perlin",seed, res=64, numSteps=14,steps=5, seed_size=32)
+        uploaded_file = gen_hightmap("Perlin",seed, res=128, numSteps=14,steps=5, seed_size=32)
         delta = time.time() - now
         print(delta)
         seed[0] = uploaded_file
@@ -34,6 +34,6 @@ full_image = np.vstack(rows)
 
 plt.imshow(full_image, cmap='gray')
 plt.axis('off')
-plt.savefig("singleImage3.png", bbox_inches='tight', pad_inches=0)
+plt.savefig("compare.png", bbox_inches='tight', pad_inches=0)
 plt.show()
 
