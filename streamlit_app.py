@@ -43,7 +43,7 @@ elapsed_mesh = 0.0
 if st.sidebar.button("Generate Heightmap"):
 
     start = time.time()
-    uploaded_file = gen_hightmap(map_type,numSteps,steps,res)
+    uploaded_file = gen_hightmap(map_type, None,numSteps,steps,res)
 
     img = uploaded_file
     img *= 255
